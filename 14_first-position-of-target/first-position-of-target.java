@@ -3,7 +3,7 @@
 @Author:   larryzhou
 @Problem:  http://www.lintcode.com/problem/first-position-of-target
 @Language: Java
-@Datetime: 17-06-04 15:34
+@Datetime: 17-06-05 11:13
 */
 
 class Solution {
@@ -31,6 +31,7 @@ class Solution {
             else if(target > nums[mid]){
                 low = mid + 1;
             }
+            //当查找到target时，继续往左推进，查找第一次出现的下标
             else
                 high = mid;
         }
