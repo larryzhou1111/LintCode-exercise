@@ -3,7 +3,7 @@
 @Author:   larryzhou
 @Problem:  http://www.lintcode.com/problem/flatten-binary-tree-to-linked-list
 @Language: Java
-@Datetime: 17-06-05 12:30
+@Datetime: 17-06-06 12:18
 */
 
 /**
@@ -24,7 +24,7 @@ public class Solution {
      */
     public void flatten(TreeNode root) {
         // write your code here
-    
+    /*
     //写法1：
         if(root != null)
         {
@@ -50,9 +50,9 @@ public class Solution {
             flatten(root.left);
             flatten(root.right);
         }
+    */    
     
     //写法2：
-    /*    
         if (root == null) {
             return;
         }
@@ -68,29 +68,30 @@ public class Solution {
         }
 
         //递归
-        TreeNode left = preorderTraversal(root.left);
-        TreeNode right = preorderTraversal(root.right);
+        TreeNode lefts = preorderTraversal(root.left);
+        TreeNode rights = preorderTraversal(root.right);
 
-        if(left != null){
+        if(lefts != null){
             
             //前序遍历：根-左-右
-            //根节点的右子节点，赋值给根节点的左子节点的右子节点
-            left.right = root.right;
-            //根节点的左子节点，赋值给根节点的右子节点，相当于遍历往后推进！
+            
+            //根节点的左子节点，其后继节点为，根节点的右子节点
+            lefts.right = root.right;
+            //根节点，其后继节点为，根节点的左子节点，相当于遍历往后推进！
             root.right = root.left;
         }
         
         //根节点的左子节点，已赋值给根节点的右子节点，故清除掉
         root.left = null;
         
-        if(right != null)
-            return right;
+        if(rights != null)
+            return rights;
             
-        else if(left != null)
-            return left;
+        else if(lefts != null)
+            return lefts;
             
         else
             return root;
-    */
+    
     }
 }
