@@ -3,7 +3,7 @@
 @Author:   larryzhou
 @Problem:  http://www.lintcode.com/problem/intersection-of-two-arrays-ii
 @Language: Java
-@Datetime: 17-06-08 15:15
+@Datetime: 17-06-10 15:19
 */
 
 public class Solution {
@@ -14,7 +14,7 @@ public class Solution {
      */
     public int[] intersection(int[] nums1, int[] nums2) {
         // Write your code here
-        /*
+
         //方法1：通过HashMap<Integer, Integer>记录数组中每个元素与对应的出现次数
         int[] results;
         
@@ -54,7 +54,7 @@ public class Solution {
             results[i] = list.get(i);
         }
         return results;        
-        */
+        
         
         //方法2：排序+二分查找变种+双指针
         /*
@@ -63,6 +63,7 @@ public class Solution {
                 ,通过双指针cnt1与cnt2统计交集元素cur在两个数组中各自出现的总次数，
                  较小者表示该交集元素在交集中出现的次数
         */
+        /*
         int[] results;
         if(nums1 == null || nums1.length == 0 || nums2 == null || nums2.length == 0){
             
@@ -89,7 +90,7 @@ public class Solution {
             int index = binarySearch(nums2, index2, cur);
             
             if(index != -1){
-                // 查找交集元素cur在数组num1中出现总次数
+                // 查找交集元素cur在数组nums1中出现总次数
                 for(int k = 1; k < nums1.length && i + k < nums1.length; k++){
                     
                     if (nums1[i + k] != cur) {
@@ -97,7 +98,7 @@ public class Solution {
                     }
                     cnt1++;
                 }
-                // 查找交集元素cur在数组num2中出现总次数
+                // 查找交集元素cur在数组nums2中出现总次数
                 for(int k = 1; k < nums2.length && index + k < nums2.length; k++){
                     
                     if(nums2[index + k] != cur){
@@ -110,10 +111,10 @@ public class Solution {
                 for(int k = 0; k < min; k++){
                     list.add(cur);
                 }
-                // num2指针移动
+                // nums2指针移动
                 index2 += cnt2;
             }
-            // num1指针移动
+            // nums1指针移动
             i += cnt1;
         }
         
@@ -155,6 +156,6 @@ public class Solution {
         }
         
         return -1;        
-        
+        */
     }
 }

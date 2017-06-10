@@ -3,7 +3,7 @@
 @Author:   larryzhou
 @Problem:  http://www.lintcode.com/problem/intersection-of-two-arrays
 @Language: Java
-@Datetime: 17-06-08 14:55
+@Datetime: 17-06-10 08:21
 */
 
 public class Solution {
@@ -109,14 +109,14 @@ public class Solution {
         }
         
         int index = 0;
-        int[] res = new int[hashSet2.size()];
+        int[] result = new int[hashSet2.size()];
         
         for (int i : hashSet2) {
             
-            res[index] = i;
+            result[index] = i;
             index ++ ;
         }
-        return res;
+        return result;
 
         
         /*
