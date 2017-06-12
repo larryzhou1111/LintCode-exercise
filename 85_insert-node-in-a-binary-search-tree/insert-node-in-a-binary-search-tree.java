@@ -39,6 +39,7 @@ public class Solution {
            2.若插入的元素值小于根节点值，则将元素插入到左子树中
            3.若插入的元素值不小于根节点值，则将元素插入到右子树中
         */
+        
         if(root == null){
             
             root = node;

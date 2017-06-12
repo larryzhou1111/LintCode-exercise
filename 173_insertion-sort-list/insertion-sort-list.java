@@ -34,7 +34,7 @@ public class Solution {
             将p对应的结点插入到正确位置，p重新指向未排好序的链表的第一个结点
             直到链表完成排序好。
         */
-		
+        
         //新建一个长度为0的链表,准备对其进行排序
         // 头结点        
         ListNode root = new ListNode(0); 
