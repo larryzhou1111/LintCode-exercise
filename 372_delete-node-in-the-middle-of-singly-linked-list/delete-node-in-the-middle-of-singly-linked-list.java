@@ -3,7 +3,7 @@
 @Author:   larryzhou
 @Problem:  http://www.lintcode.com/problem/delete-node-in-the-middle-of-singly-linked-list
 @Language: Java
-@Datetime: 17-06-05 11:40
+@Datetime: 17-06-11 15:41
 */
 
 /**
