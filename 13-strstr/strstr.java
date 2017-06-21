@@ -16,6 +16,8 @@ class Solution {
     public int strStr(String source, String target) {
         // write your code here
         
+        //需回顾KMP算法！！！
+        
         //方法1：循环遍历比较，效率低
         
         if(source == null || target == null)
