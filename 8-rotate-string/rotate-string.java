@@ -38,6 +38,7 @@ public class Solution {
         }
         */
         
+		//方法2：与上述方法类似
         if(str == null || str.length == 0) 
             return;
             
