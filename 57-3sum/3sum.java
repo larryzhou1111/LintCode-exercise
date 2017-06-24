@@ -19,6 +19,9 @@ public class Solution {
         //先对数组排序，然后开始遍历
         //对数组中的每一个元素，用两指针往中间夹，直到找出所有的解。时间复杂度 O(n^2).
         
+        if(numbers == null || numbers.length < 1)
+            return null;
+        
         ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
         
         Arrays.sort(numbers);
