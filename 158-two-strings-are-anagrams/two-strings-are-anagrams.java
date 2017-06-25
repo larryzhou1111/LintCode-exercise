@@ -21,7 +21,7 @@ public class Solution {
         if(s == t)
             return true;
             
-        if(s == null || s == null || s.length() != s.length())
+        if(s == null || t == null || s.length() != t.length())
             return false;
             
         Map<Character, Integer> map = new HashMap<Character, Integer>();
