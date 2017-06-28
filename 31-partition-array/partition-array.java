@@ -28,6 +28,8 @@ public class Solution {
     public int partitionArray(int[] nums, int k) {
 	    //write your code here
 	    
+	    //方法1：先排序，再遍历找到k附近的元素。复杂度略高！
+	    /*
 	    if(nums == null || nums.length == 0)
 	        return 0;
 	        
@@ -47,5 +49,38 @@ public class Solution {
 	    }
 	    
 	    return index;
+	    */
+	    
+	    //方法2：规定两根指针start和end分别指向数组的首尾，分别向后，向前遍历
+	    //若nums[start] > k 且 nums[end] < k，则交换这两个数
+	    //而最终start的值，即为i的位置
+	    
+	    int start = 0;
+	    int end = nums.length - 1;
+	    int temp = 0;
+	    
+	    while(end - start >= 0){
+	        
+	        if(nums[start] >= k){
+	            
+	            if(nums[end] < k){
+	                
+	                //交换
+	                temp = nums[start];
+	                nums[start] = nums[end];
+	                nums[end] = temp;
+	            }
+	            
+	            else{
+	                end--;
+	            }
+	        }
+	        
+	        else{
+	            start++;
+	        }
+	    }
+	    
+	    return start;
     }
 }
