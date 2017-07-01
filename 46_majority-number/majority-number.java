@@ -14,14 +14,24 @@ public class Solution {
     public int majorityNumber(ArrayList<Integer> nums) {
         // write your code
         
-        //方法1：分治法
+		/*
+		  给定一个整型数组，找出主元素，
+		  它在数组中的出现次数严格大于数组元素个数的二分之一
+		*/
+		
+        //分治法
+		
         /*
-          保持两个标记变量。一个统计值count初始为0，一个当前值cur
-              遍历整个数组，用x表示当前值
+          保持两个标记变量
+		  一个统计值count初始为0，一个当前值cur遍历整个数组，用x表示当前值
+		  
           当count == 0时，设cur = x, count++
           当count != 0时，若x == cur,则count++; 若x != cur,则count--
           最后返回cur
         */
+        
+        if (nums == null || nums.size() == 0) 
+            return -1;
         
         int count = 0;
         int cur = nums.get(0);
