@@ -14,15 +14,23 @@ public class Solution {
     public int majorityNumber(ArrayList<Integer> nums) {
         // write your code
         
+		/*
+		  给定一个整型数组，找到主元素，
+		  它在数组中的出现次数严格大于数组元素个数的三分之一
+		*/
+		
         //类比题46
         
         /* 思路：
-           如果发现3个不一样的数就进行消掉
-           记录两个candidate和每个candidate分别的出现次数
-           如果遍历到的数和两个candidate都不等，就将其对应的count都减1
+           如果发现3个不一样的数就进行消掉，统计出现最多的两个数，再比较
+           记录两个candidate，和每个candidate分别出现的次数
+           如果遍历到的数，和两个candidate都不等，就将其对应的count都减1
            最后将两个candidate再遍历一次,验证一下谁出现的次数多,谁就是主元素
         */
-        
+                
+        if (nums == null || nums.size() == 0) 
+            return -1;
+
         int candidate1 = 0, candidate2 = 0;
         int count1 = 0, count2 = 0;
         
@@ -51,11 +59,19 @@ public class Solution {
         
         for(int j = 0; j < nums.size(); j++){
             
-            count1 += (candidate1 == nums.get(j)) ? 1 : 0;
-            count2 += (candidate2 == nums.get(j)) ? 1 : 0;
+            if(nums.get(j) == candidate1){
+                
+                count1++;
+                
+            }
+            
+            else if(nums.get(j) == candidate2){
+                
+                count2++;
+            }
+
         }
         
         return count1 > count2 ? candidate1 : candidate2;
-        
     }
 }
