@@ -60,6 +60,9 @@ public class Solution {
 
         */
         
+        
+        //写法1：略麻烦！
+        /*
         //动态规划矩阵
         int[][] dp = new int[A.length][m + 1];
         
@@ -103,5 +106,34 @@ public class Solution {
         }
         
         return dp[A.length - 1][m];
+        */
+        
+        
+        //写法2：
+        /*
+          用数组dp[i]表示书包空间为i的时候，能装的A物品最大容量
+          两次循环，外部遍历数组A，内部反向遍历数组dp，
+          若j即背包容量大于等于物品体积A[i]，则取前i-1次循环求得的最大容量dp[j]，
+          和背包体积为 j-A[i] 时的最大容量 dp[j-A[i]] 与第i个物品体积A[i]之和
+          即dp[j-A[i]]+A[i]的较大值，作为本次循环后的最大容量dp[i]。
+
+          注意dp[]的空间要给 m + 1，
+          因为我们要求的是第 m + 1个值 dp[m]，否则会抛出 OutOfBoundException
+        */
+        int[] dp = new int[m + 1];
+        
+        for(int i = 0; i < A.length; i++){
+            
+            for(int j = m; j > 0; j--){
+                
+                if(j >= A[i]){
+                    
+                    dp[j] = Math.max(dp[j], dp[j-A[i]] + A[i]);
+                }
+            }
+        }
+        
+        return dp[m];
+        
     }
 }
