@@ -3,7 +3,7 @@
 @Author:   larryzhou
 @Problem:  http://www.lintcode.com/zh-cn/problem/sort-list/
 @Language: Java
-@Datetime: 17-7-9 22:00
+@Datetime: 17-7-10 22:00
 */
 
 /**
@@ -33,6 +33,7 @@ public class Solution {
         */
         
         //快排
+        /*
         if(head == null || head.next == null) 
             return head;
             
@@ -95,7 +96,79 @@ public class Solution {
         ListNode tail = sortList(large.next);
         p.next = tail;
         
-        return ss;        
+        return ss;  
+        */
         
+        //归并排序
+        
+        if(head == null || head.next == null) 
+            return head;
+            
+        ListNode mid = findMid(head);
+
+        ListNode tmp = mid.next;
+        mid.next = null;
+        
+        ListNode headleft = sortList(head);
+        ListNode headright = sortList(tmp);
+        
+        return merge(headleft, headright);
+    }
+    
+    
+    public static ListNode findMid(ListNode head){
+        
+        if(head == null || head.next == null) 
+            return head;
+            
+        ListNode slow = head;
+        ListNode fast = head;
+        
+        while(fast.next != null && fast.next.next != null){
+            
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        
+        return slow;
+    }
+
+
+    public static ListNode merge(ListNode left, ListNode right){
+        
+        if(left == null || right == null) 
+            return null;
+            
+        ListNode node = new ListNode(0);
+        ListNode dummy = node;
+        
+        while(left != null && right != null){
+            
+            if(left.val < right.val){
+                
+                ListNode tmp = left;
+                left = left.next;
+                dummy.next = tmp;
+                dummy = dummy.next;
+            }
+            else{
+                
+                ListNode tmp = right;
+                right = right.next;
+                dummy.next = tmp;
+                dummy = dummy.next;
+            }
+        }
+        
+        if(left != null){
+            
+            dummy.next = left;
+        } 
+        else{
+            
+           dummy.next = right; 
+        } 
+        
+        return node.next;
     }
 }
