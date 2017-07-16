@@ -16,9 +16,23 @@ class Solution {
     public void mergeSortedArray(int[] A, int m, int[] B, int n) {
         // write your code here
         
-        //思路：类比题6 本题中数组A的长度为m+n，则B中元素直接添加到A中
-        //从后往前遍历A和B，大的元素添加到数组A尾部。A和B长度不重叠部分，直接归并即可
+        /* 合并排序数组II：合并两个排序的整数数组A和B变成一个新的数组。
 
+        注意事项:
+        你可以假设A具有足够的空间（A数组的大小大于或等于m+n）去添加B中的元素。
+        
+        样例:
+        给出 A = [1, 2, 3, empty, empty], B = [4, 5]
+        合并之后 A 将变成 [1,2,3,4,5]
+        */
+        
+        //思路：类比题6 本题中数组A的长度为 m+n，则B中元素直接添加到A中
+        //从后往前遍历A和B，大的元素添加到数组A尾部。A和B长度不重叠部分，直接归并即可
+        
+        //类比题6，题212（剑指offer题4）
+        if(A == null || B == null)
+            return;
+            
         int i = m - 1;
         int j = n - 1;
         
