@@ -92,5 +92,88 @@ public class MyQueue {
             return stack2.peek();
         }
     }
+	
+	/* 队列 queue   参考：http://www.cnblogs.com/end/archive/2012/10/25/2738493.html
+	
+	    add：    添加一个元素，如果队列已满，则抛出一个IIIegaISlabEepeplian异常
+		offer：  添加一个元素并返回true，如果队列已满，则返回false
+		put：    添加一个元素，如果队列满，则阻塞
+				
+		remove： 移除并返回队列头部的元素，如果队列为空，则抛出一个NoSuchElementException异常
+		poll：   移除并返问队列头部的元素，如果队列为空，则返回null
+		take：   移除并返回队列头部的元素，如果队列为空，则阻塞
+		
+		element：返回队列头部的元素，如果队列为空，则抛出一个NoSuchElementException异常
+		peek：   返回队列头部的元素，如果队列为空，则返回null
+
+	*/
+	
+	//类比：用两个队列实现一个栈
+	/*思路：
+		对于push: 如果两个队列都为空，就插入到第一个队列中；否则就插入到非空的那个队列中；
+        对于pop: 把非空的那个队列的每个元素移除出来，然后插入到另一个队列中，
+				 直到剩下最后一个元素，然后将其弹出
+	*/
+	/*
+	    Queue<integer> queue1 = new ArrayDeque<>();
+		Queue<integer> queue2 = new ArrayDeque<>();
+	 
+		public void push(int node) {
+			
+			//两个栈都为空时，优先考虑queue1
+			if (queue1.isEmpty()&&queue2.isEmpty()) {
+				queue1.add(node);
+				return;
+			}
+	 
+			//如果queue1为空，queue2有元素，直接放入queue2
+			if (queue1.isEmpty()) {
+				queue2.add(node);
+				return;
+			}
+	 
+			if (queue2.isEmpty()) {
+				queue1.add(node);
+				return;
+			}
+	 
+		}
+	 
+		public int pop() {
+			
+			//两个栈都为空时，没有元素可以弹出
+			if(queue1.isEmpty()&&queue2.isEmpty()){
+				
+				try {
+					throw new Exception(stack is empty);
+				} catch (Exception e) {
+				}
+			}
+			
+			//如果queue1为空，queue2有元素，将queue2的元素依次放入queue1中
+			//queue2中留下最后一个元素，弹出
+			if(queue1.isEmpty()){
+				
+				while(queue2.size()>1){
+					
+					queue1.add(queue2.poll());
+				}
+				
+				return queue2.poll();
+			}
+	 
+			if(queue2.isEmpty()){
+				
+				while(queue1.size()>1){
+					
+					queue2.add(queue1.poll());
+				}
+				
+				return queue1.poll();
+			}
+	 
+			return (Integer) null;
+		}
+	*/
     
 }
