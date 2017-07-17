@@ -55,7 +55,8 @@ public class Solution {
         
         while(num[start] >= num[end]){
             
-            //相邻
+            //相邻，说明前一个排序数组的最后一位，相邻于后一个排序数组的第一位
+			//后一个排序数组的第一位，即为最小值
             if(end - start <= 1){
                 
                 mid = end;
