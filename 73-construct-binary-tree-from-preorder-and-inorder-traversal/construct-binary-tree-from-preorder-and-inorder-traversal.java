@@ -42,8 +42,10 @@ public class Solution {
         
         /*
           前序遍历的第一个结点就是二叉树的根结点
-          中序遍历，从第一个到根结点之前的结点序列为左子树
+          中序遍历，从第一个到根结点之前的结点序列为左子树，记录其长度为offset
           中序遍历中，根结点之后的结点序列，为右子树
+		  前序遍历中，根节点之后，长度为offset的一段节点序列，都为左子树
+		  再之后的节点序列，都为右子树
           
           然后使用递归来处理根结点的左子树和右子树
         */
@@ -51,13 +53,12 @@ public class Solution {
         if(preorder == null || inorder == null)
             return null;
 
-        return ConstructCore(preorder, inorder, 0, preorder.length - 1,
-                                                0, inorder.length - 1);
+        return ConstructTree(preorder, inorder, 0, preorder.length - 1
+                                              , 0, inorder.length - 1);
                                                 
     }
 
-    public TreeNode ConstructCore(int[] preOrder, int[] inOrder, int startPreorder, 
-                            int endPreorder, int startInorder, int endInorder) {
+    public TreeNode ConstructTree(int[] preOrder, int[] inOrder, int startPreorder, int endPreorder, int startInorder, int endInorder) {
 
         if(startPreorder > endPreorder || startInorder > endInorder)
             return null;
@@ -66,17 +67,22 @@ public class Solution {
 
         int divider = 0;
         
+        //找到中序遍历中相应的根节点
         while(divider <= endInorder && inOrder[divider] != root.val){
             
             divider++;
         }
-
-        int offSet = divider - startInorder - 1;
         
-        root.left = ConstructCore(preOrder, inOrder, startPreorder + 1, 
-                    startPreorder + 1 + offSet, startInorder,startInorder + offSet);
-          
-        root.right = ConstructCore(preOrder, inOrder, startPreorder + offSet + 2,                   endPreorder, divider + 1, endInorder);
+        int offset = divider - startInorder - 1;
+        
+        //递归，找到根节点和左右子树
+        
+        //中序遍历，从第一个到根结点之前的结点序列，都是为左子树
+        //前序遍历，从根结点之后，长度为offset的一段结点序列，都是为左子树        
+        root.left = ConstructTree(preOrder, inOrder, startPreorder + 1, startPreorder + 1 + offset, startInorder,startInorder + offset);
+        
+        //右子树与上述同理
+        root.right = ConstructTree(preOrder, inOrder, startPreorder + offset + 2, endPreorder, divider + 1, endInorder);
 
         return root;
         
