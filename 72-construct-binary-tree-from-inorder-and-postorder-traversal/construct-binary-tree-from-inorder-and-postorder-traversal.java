@@ -51,48 +51,76 @@ public class Solution {
         if(inorder.length != postorder.length)
             return null;
             
-        return buildTree(inorder, 0, inorder.length - 1, 
-                         postorder, 0, postorder.length - 1);
+        return ConstructTree(inorder, 0, inorder.length - 1, 
+                         postorder, 0, postorder.length - 1 );
                          
     }
+
     
-    public int findroot(int[] inorder, int r){
-        
-        for(int i = 0; i < inorder.length; i++){
-           
-            if(inorder[i] == r)
-                return i;
-        }
-        return - 1;
-    }
-    
-    public TreeNode buildTree(int[] inorder, int istart, int iend, 
-                              int[] postorder, int pstart, int pend){
+    public TreeNode ConstructTree(int[] inorder, int startInorder, int endInorder,int[] postorder, int startPostorder, int endPostorder){
                                   
-        if(istart > iend)
+        if(startPostorder > endPostorder || startInorder > endInorder)
             return null;
             
-        // 根结点            
-        int r = postorder[pend];
-        TreeNode root = new TreeNode(r);
+        //后序遍历中的根结点            
+        TreeNode root = new TreeNode(postorder[endPostorder]);
+
+        int divider = 0;
         
-        // 找到根节点
-        int l = findroot(inorder, r);
+        //找到中序遍历中相应的根节点
+        while(divider <= endInorder && inorder[divider] != root.val){
+            
+            divider++;
+        }   
         
-        //左子树 中序遍历 起始结束位置以此是：istart l - 1 
+        int offset = divider - startInorder - 1;
         
-        //后序遍历 起始位置是：pstart 结束位置:
-        //pstart(已经占据了一个位置所以要 - 1) + (左子树的长度) - 1
-        root.left = buildTree(inorder, istart, l - 1, postorder,
-                                    pstart, pstart + (l - 1 - istart + 1) - 1);
-                                    
-        //右子树 中序遍历 起始结束位置：l + 1 iend
+        //递归，找到根节点和左右子树
         
-        //后序遍历 起始位置：pstart + (左子树的长度) ,结束位置 pend -1
-        root.right = buildTree(inorder, l + 1, iend, postorder,
-                                     pstart + (l - 1 - istart + 1), pend -1);
+        //中序遍历，从第一个到根结点之前的结点序列，都是为左子树
+        //后序遍历，从第一个节点开始，长度为offset的一段结点序列，都是为左子树   
+        root.left = ConstructTree(inorder, startInorder, divider - 1, 
+                        postorder, startPostorder, startPostorder + offset);
         
+        //右子树与上述同理
+        root.right = ConstructTree(inorder, divider + 1, endInorder, 
+                    postorder, startPostorder + offset + 1, endPostorder - 1);
+
         return root;
+		
+		/*
+		    // 中序遍历二叉树
+			public static void inorder(TreeNode root) {
+				if (root != null) {
+					preorder(root.left);
+					System.out.print(root.val + " ");
+					preorder(root.right);
+				}
+			}
+
+			// 后序遍历二叉树
+			public ArrayList<Integer> postorderTraversal(TreeNode root) {
+        
+				//左-右-根 逐次添加
+			
+				ArrayList<Integer> result = new ArrayList<Integer>();
+				 
+				if (root == null) {
+					return result;
+				}
+
+				//遍历
+				ArrayList<Integer> left = postorderTraversal(root.left);
+				ArrayList<Integer> right = postorderTraversal(root.right);
+
+				//添加到路径
+				result.addAll(left);
+				result.addAll(right);
+				result.add(root.val);
+
+				return result;
+			}
+		*/
         
     }
 }
