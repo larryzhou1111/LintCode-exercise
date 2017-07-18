@@ -27,6 +27,10 @@ public class Solution {
         // write your code
         
         //翻转链表中,第m个节点到第n个节点的部分。需回顾！！
+        /*
+            样例:
+            给出链表1->2->3->4->5->null， m = 2和n = 4，返回1->4->3->2->5->null
+        */
         
         if(head == null || m >= n)
             return head;
@@ -41,8 +45,8 @@ public class Solution {
             
             if(head == null)
                 return null;
-            
-            //因为前面在头结点之前引入了一个结点，所以这里的head指向m的前一个结点    
+                
+            //因为已在头结点之前引入了一个结点，所以这里的head指向m的前一个结点
             head = head.next;
             
         }
