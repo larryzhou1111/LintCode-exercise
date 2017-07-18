@@ -53,8 +53,8 @@ public class Solution {
 	    
 	    //方法2：规定两根指针start和end分别指向数组的首尾，分别向后，向前遍历
 	    //若nums[start] > k 且 nums[end] < k，则交换这两个数
-	    //而最终start的值，即为i的位置
-	    
+	    //而最终start的值即为i的位置
+	    /*
 	    int start = 0;
 	    int end = nums.length - 1;
 	    int temp = 0;
@@ -82,5 +82,48 @@ public class Solution {
 	    }
 	    
 	    return start;
+	    */
+	    
+        //方法3：将方法2中判断k大小抽取出来，作为判断函数，目的是解耦和功能扩展
+	    int start = 0;
+	    int end = nums.length - 1;
+	    int temp = 0;
+	    
+	    while(end - start >= 0){
+	        
+	        //位运算，比乘除法、求余效率更高，与0x01，相当于对2取余
+	        if(Judgek(nums[start], k)){
+	            
+	            if(!Judgek(nums[end], k)){
+	                
+	                //交换
+	                temp = nums[start];
+	                nums[start] = nums[end];
+	                nums[end] = temp;
+	            }
+	            
+	            else{
+	                end--;
+	            }
+	        }
+	        
+	        else{
+	            start++;
+	        }
+	    } 
+	    
+	    return start;
+	    
     }
+    
+    //解耦和功能扩展，以后分割条件改变，只需修改此判断函数即可
+    public boolean Judgek(int num, int k){
+        
+        if(num >= k)
+            return true;
+        else
+            return false;
+            
+    }	    
+	 
 }
