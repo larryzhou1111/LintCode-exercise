@@ -54,11 +54,21 @@ public class Solution {
         return result;
         */
         
+        
         //方法2：
-        /*  首先计算最高位存入base，
-            然后，用1到9倍的base（curbase）和 
-            之前res里已经存入的所有的数（res.size()个）循环相加，
-            再存入res，更新res.size，
+        /*  
+            n = 1，返回 [1 - 9]
+            n = 2，返回 10 * [1 - 9] + [1 - 9]
+            n = 3，返回 10 * 10 *  [1 - 9] + 10 *[1 - 9] + [1 - 9]
+            ...
+            
+            首先，计算最高位存入base
+            
+            然后，用1到9倍的base（curbase）和之前res里已经存入的所有的数
+                                                 （res.size()个）循环相加
+            
+            再存入res，更新res.size，继续循环相加
+            
             计算更高位，直到 base 等于 10^n ...
         */
         List<Integer> res = new ArrayList<Integer>();
@@ -75,17 +85,34 @@ public class Solution {
         
         if(n == 0)
             return 1;
-            
+        
+        //递归求最高位
+        //计算最高位存入base    
         int base = helper(n - 1, res);
         int size = res.size();
         
+        /*
+          base=1   :  1  , (1+1)  , (1+2)  ... (1+8)   ---  (1,2,3...9)
+          
+          base=10  :  10 , (10+1) , (10+2) ... (10+9)  ---  (1,2,3...19)
+                      20 , (20+1) , (10+2) ... (20+9)  ---  (1,2,3...29)
+                      30 , (30+1) , (30+2) ... (30+9)  ---  (1,2,3...39) 
+                      ...
+                      
+          base=100 :  100, (100+1), (100+2)...(100+99)  ---  (1,2,3.. 199)              
+					  200, (200+1), (200+2)...(200+99)  ---  (1,2,3.. 299)
+                      ...
+        */
         for(int i = 1; i <= 9; i++){
             
+            //计算 1到9倍的base（curbase）
             int curbase = i * base;
             res.add(curbase);
             
+            //curbase 和之前res里已经存入的所有的数（res.size()个）循环相加
             for(int j = 0; j < size; j++){
                 
+                //结果存入res，更新res.size
                 res.add(curbase + res.get(j));
             }
         }
