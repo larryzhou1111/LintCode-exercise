@@ -25,11 +25,24 @@ public class Solution {
     public void invertBinaryTree(TreeNode root) {
         // write your code here
         
+        /* 翻转二叉树
+        
+            样例
+              1         1
+             / \       / \
+            2   3  => 3   2
+               /       \
+              4         4
+        */
+        
         //对每一个结点，将它的左右子树进行交换，再对它的左右子结点进行同样的操作
-        if(root != null){
+        if(root == null)
+            return;
+
+        if(root.left == null && root.right == null)
+            return;
             
-            invert(root);
-        }
+        invert(root);
     }
     
     public TreeNode invert(TreeNode root){
@@ -41,10 +54,19 @@ public class Solution {
             root.left = root.right;
             root.right = temp;
             
-            //递归
-            invertBinaryTree(root.left);
-            invertBinaryTree(root.right);
+            //递归左右子节点
+            if(root.left != null){
+                
+                invertBinaryTree(root.left);
+            }
+            
+            if(root.right != null){
+                
+                invertBinaryTree(root.right);
+            }
+
         }
+        
         return root;
     }
 }
