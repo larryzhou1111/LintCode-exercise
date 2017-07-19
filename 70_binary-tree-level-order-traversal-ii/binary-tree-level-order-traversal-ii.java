@@ -26,7 +26,7 @@ public class Solution {
      */
     public ArrayList<ArrayList<Integer>> levelOrderBottom(TreeNode root) {
         // write your code here
-		
+        
         /* 二叉树的层次遍历 II
         
             给出一棵二叉树，返回其节点值从底向上的层次序遍历
@@ -60,8 +60,49 @@ public class Solution {
 			
 			element：返回队列头部的元素，如果队列为空，则抛出一个NoSuchElementEx                                                     ception异常
 			peek：   返回队列头部的元素，如果队列为空，则返回null
-		*/ 		
+		*/         
         
+        //写法1：与题69一致，但是是倒序存放，即相当于从下到上逐层遍历
+        ArrayList result = new ArrayList();
+ 
+        if(root == null)
+            return result;
+
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.offer(root);
+ 
+        while(!queue.isEmpty()){
+            
+            ArrayList<Integer> level = new ArrayList<Integer>();
+            
+            int size = queue.size();
+            
+            for(int i = 0; i < size; i++){
+                
+                TreeNode head = queue.poll();
+                
+                level.add(head.val);
+                
+                if(head.left != null){
+                    
+                    queue.offer(head.left);     
+                }
+                
+                if(head.right != null){
+                    
+                    queue.offer(head.right);    
+                }
+            }
+            
+            //从上到下逐层添加到队列，每次都添加到开头处，即倒序存放
+            result.add(0, level);
+            
+        }
+ 
+        return result; 
+        
+        
+        /* 写法2：
         //逐层添加到队列,但是是倒序存放
         ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
 
@@ -106,6 +147,6 @@ public class Solution {
             currLevelNodeNum = nextLevelNodeNum;
         }
         return result;
-
+        */
     }
 }
