@@ -14,30 +14,39 @@ public class Solution {
     public int minSubArray(ArrayList<Integer> nums) {
         // write your code
         
-        //最小子数组，类比题41
-        
+        /* 最小子数组，类比题41
+             给定一个整数数组，找到一个具有最小和的子数组。返回其最小和
+             
+             注意事项:子数组最少包含一个数字
+             
+             样例: 给出数组[1, -1, -2, 1]，返回 -3
+        */
+
         //方法1：暴力枚举。效率低，略
         
-        
         //方法2：贪心法，复杂度O（n）
-        //将子串和为正数的子串丢掉，只留和为负的子串
+        //将子串和为正数的子串丢掉，更新为当前的数组元素；若子串和为负，继续累加
         /*
+        if(nums == null || nums.size() == 0)
+            return Integer.MAX_VALUE;
+        
         int min = Integer.MAX_VALUE;  
         int sum = 0;  
         
         for(int i = 0; i < nums.size(); i++){  
             
-            sum += nums.get(i);  
+            if(sum > 0){  
+                
+                //子串和为正数，丢掉，更新为当前的数组元素
+                sum = nums.get(i);     
+            }
+            else{
+                sum += nums.get(i);
+            }
             
             if(sum < min){  
                 
                 min = sum;  
-            } 
-            
-            if(sum > 0){  
-                
-                //子串和为正数，丢掉
-                sum = 0;     
             }  
         }  
         
@@ -61,6 +70,9 @@ public class Solution {
           
         */
         
+        if(nums == null || nums.size() == 0)
+            return Integer.MAX_VALUE;
+            
         int min_ending_here = nums.get(0);
         int min_so_far = nums.get(0);
         
