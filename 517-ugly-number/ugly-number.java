@@ -26,12 +26,11 @@ public class Solution {
             样例:
             给出 num = 8，返回 true。
             给出 num = 14，返回 false。
-                    
         */
-        
+
         //用2、3、5不断整除n，当n不能再被2、3、5整除时，判断n是否等于1
         //等于1则指定的数字是丑数
-        
+
         if(num <= 0) 
             return false;  
             
@@ -51,48 +50,52 @@ public class Solution {
             return true;
         else 
             return false;
-
         
-        //类似题：返回第k个丑数
-        
-        /*
-        //把第一个丑数返回
-		if(k < 0) 
- 			return 1;
+		
+        /* 类似题：返回第n个丑数（剑指offer题34）
+		
+		  方法：分成三组，每次取最小值做丑数，每组使用一个指针。然后被选中的数的指针后移
+          (1) 1×2, 2×2, 3×2, 4×2, 5×2, …
 
-  		long[] numbers = new long[k + 1]; 	
-  		numbers[0] = 1;
-  		
-  		int next = 1;
-  		int ugly3Index = 0;
-  		int ugly5Index = 0;
-  		int ugly7Index = 0;
-  		
-  		while(next <= k){
-  		    
-  			long uglyNum = Math.min(numbers[ugly3Index] * 3,
-  					Math.min(numbers[ugly5Index] * 5, numbers[ugly7Index] * 7));
-  					
-  			numbers[next] = uglyNum;
-  			
-  			while(numbers[ugly3Index] * 3 <= numbers[next]){
-  			    
-  				ugly3Index++;
-  			}
-  			
-  			while(numbers[ugly5Index] * 5 <= numbers[next]){
-  				ugly5Index++;
-  			}
-  			while(numbers[ugly7Index] * 7 <= numbers[next]){
-  			    
-  				ugly7Index++;
-  			}
-  			
-  			next++;
-  		}
-  		
-  		return numbers[k]; 
+          (2) 1×3, 2×3, 3×3, 4×3, 5×3, …
+
+          (3) 1×5, 2×5, 3×5, 4×5, 5×5, …
+
+           符合条件的数如：1, 2, 3, 4, 5, 6, 8, 9, 10, 12...
         */
+        /*
+        int[] UglyNum = new int[n];
         
+        UglyNum[0] = 1;
+        
+        int a = 2, b = 3, c = 5;
+        int indexA = 1, indexB = 1, indexC = 1;
+        
+        for(int i = 1; i < n; i++){
+            
+            int min = Math.min(Math.min(a, b), c);
+            UglyNum[i] = min;
+            
+            if(a == min){
+                
+                a = UglyNum[indexA] * 2;
+                indexA++;
+            }
+            
+            if(b == min){
+                
+                b = UglyNum[indexB] * 3;
+                indexB++;
+            }
+            
+            if(c == min){
+                
+                c = UglyNum[indexC] * 5;
+                indexC++;
+            }
+        }
+        
+        return UglyNum[n - 1];
+		*/
     }
 }
