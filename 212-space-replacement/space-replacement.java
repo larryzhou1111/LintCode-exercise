@@ -15,6 +15,8 @@ public class Solution {
     public int replaceBlank(char[] string, int length) {
         // Write your code here
         
+		//剑指offer题4
+		
         /* 空格替换 
         
         设计一种方法，将一个字符串中的所有空格替换成 %20 

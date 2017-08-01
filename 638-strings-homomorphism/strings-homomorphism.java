@@ -15,14 +15,25 @@ public class Solution {
     public boolean isIsomorphic(String s, String t) {
         // Write your code here
         
-        //判断两个字符串是否同构
+        /*  判断两个字符串是否同构: 给定两个字符串s和t，确定它们是否是同构的
 
+            如果s中的字符可以被替换得到t，则两个字符串是同构的
+
+            字符的所有出现必须用另一个字符代替，同时保留字符的顺序
+            没有两个字符可能映射到同一个字符，但一个字符可能映射到自己
+
+            注意事项: 假设s和t都有相同的长度
+
+            样例
+            Given s = "egg", t = "add", return true
+            Given s = "foo", t = "bar", return false
+            Given s = "paper", t = "title", return true
+        */
+        
+        //方法1：判断对应位置字符是否成唯一映射，同时判断是否出现重复映射
         if(s == null || t == null || s.length() != t.length())
             return false;
-        
-        /*
-        //方法1：判断对应位置字符是否成唯一映射，同时判断是否出现重复映射
-        
+
         HashMap<Character, Character> record = new HashMap<>();
         HashSet<Character> repeat = new HashSet<>();
         
@@ -49,10 +60,10 @@ public class Solution {
             
         }
         return true;
-        */
         
-        /*
+        
         //方法2：比较两个字符串中，每个字符第一次出现的位置。效率较低
+        /*
         HashMap<Character, Integer> map1 = new HashMap<Character, Integer>();
         HashMap<Character, Integer> map2 = new HashMap<Character, Integer>();
         
@@ -90,6 +101,7 @@ public class Solution {
         */
         
         //方法3：
+        /*
         int[] m1 = new int[128];
         int[] m2 = new int[128];
         
@@ -112,6 +124,7 @@ public class Solution {
                     m1[cs] = ts;
                     m2[ts] = Integer.MIN_VALUE;
                 }
+                
                 //s.charAt(i) has no mapping but t.charAt(i) already
                 //has a mapping to some other character that is not
                 //s.charAt(i)
@@ -119,6 +132,7 @@ public class Solution {
                     return false;
                 }
             }
+            
             //s.charAt(i) already has a mapping, then it must maps to
             //t.charAt(i)
             else if(m1[cs] != ts){
@@ -128,5 +142,6 @@ public class Solution {
         }
         
         return true;
+        */
     }
 }

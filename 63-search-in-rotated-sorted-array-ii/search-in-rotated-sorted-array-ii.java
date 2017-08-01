@@ -15,6 +15,11 @@ public class Solution {
     public boolean search(int[] A, int target) {
         // write your code here
         
+        /*  搜索旋转排序数组II (假如可以有重复元素)
+        
+            样例: 给出[3,4,4,5,7,0,1,2]和target=4，返回 true
+        */
+        
         //方法1：顺序查找（排序数组已旋转，无法直接利用二分查找）
         /*
         if(A == null || A.length == 0) 
@@ -35,7 +40,7 @@ public class Solution {
         //方法2：改进版的二分查找
         /*
           每次都把数组分成两半，判别哪一半是排过序的
-          如果待查元素在排过序的那一半，那么用二叉搜索
+          如果待查元素在排过序的那一半，那么用二分搜索
           如果在另一半，那么在这另一半里，递归继续查找
           
           在搜索旋转数组的基础上 判断 left 和 mid 的值相等的情况
@@ -83,5 +88,6 @@ public class Solution {
         }
         
         return false;        
+
     }
 }

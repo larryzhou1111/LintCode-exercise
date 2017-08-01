@@ -14,6 +14,8 @@ public class Solution {
     public int maxSubArray(int[] nums) {
         // write your code
         
+		//剑指offer题31
+		
 		/* 最大子数组 :给定一个整数数组，找到一个具有最大和的子数组，返回其最大和。
 
 			注意事项:子数组最少包含一个数

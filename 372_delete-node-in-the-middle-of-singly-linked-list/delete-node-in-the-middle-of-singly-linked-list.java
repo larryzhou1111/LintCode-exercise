@@ -24,6 +24,8 @@ public class Solution {
      */
     public void deleteNode(ListNode node) {
         // write your code here
+		
+		//剑指offer题13
         
         /* 在O(1)时间复杂度删除链表节点
         

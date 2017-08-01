@@ -25,6 +25,8 @@ public class Solution {
     public ListNode reverse(ListNode head) {
         // write your code here
         
+		//类似剑指offer题5、16
+		
         /* 翻转链表
         
           样例:

@@ -15,6 +15,8 @@ class Solution {
     public int aplusb(int a, int b) {
         // write your code here, try to do it without arithmetic operators.
         
+		//剑指offer题47
+		
         /* A + B 问题: 给出两个整数a和b, 求他们的和, 但不能使用 + 等数学运算符
         
             注意事项:不需要从输入流读入数据，只需要根据aplusb的两个参数a和b，

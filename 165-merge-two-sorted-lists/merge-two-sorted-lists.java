@@ -26,7 +26,15 @@ public class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         // write your code here
         
+		//剑指offer题17
+		
         //类比题6、64 合并数组系列
+		
+		/*  合并两个排序链表: 将两个排序链表合并为一个新的排序链表
+			
+			样例: 给出 1->3->8->11->15->null，2->null， 
+					返回 1->2->3->8->11->15->null
+		*/
         
         //方法1：
         /*

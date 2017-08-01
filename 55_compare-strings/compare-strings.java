@@ -15,7 +15,18 @@ public class Solution {
     public boolean compareStrings(String A, String B) {
         // write your code here
         
-        //思路1：A和B中的字符都是大写字母，分别统计A和B中各个字母的个数，再比较。
+        /*  比较字符串
+            比较两个字符串A和B，确定A中是否包含B中所有的字符
+            字符串A和B中的字符都是大写字母
+        
+            注意事项: 在 A 中出现的 B 字符串里的字符不需要连续或者有序
+
+            样例:
+            给出 A = "ABCD"  B = "ACD"，返回 true
+            给出 A = "ABCD"  B = "AABC"，返回 false
+        */
+        
+        //思路1：A和B中的字符都是大写字母，分别统计A和B中各个字母的个数，再比较
 
         if(B.length() > A.length())
             return false;
@@ -24,12 +35,12 @@ public class Solution {
         int [] LetterNum_B = new int[26]; 
         
         //遍历A和B，统计其中各个字母出现的次数
-        for(int i=0;i<A.length();i++){
+        for(int i = 0; i < A.length(); i++){
             
             LetterNum_A[A.charAt(i) - 'A']++;
         }
         
-        for(int i=0;i<B.length();i++){
+        for(int i = 0; i < B.length(); i++){
             
             LetterNum_B[B.charAt(i) - 'A']++;
             

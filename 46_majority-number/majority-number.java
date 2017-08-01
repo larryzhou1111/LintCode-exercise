@@ -14,6 +14,8 @@ public class Solution {
     public int majorityNumber(ArrayList<Integer> nums) {
         // write your code
         
+		//剑指offer题29
+		
 		/*
 		  给定一个整型数组，找出主元素，
 		  它在数组中的出现次数严格大于数组元素个数的二分之一

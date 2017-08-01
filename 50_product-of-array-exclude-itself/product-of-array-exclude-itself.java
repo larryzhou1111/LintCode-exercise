@@ -13,6 +13,16 @@ public class Solution {
      */
     public ArrayList<Long> productExcludeItself(ArrayList<Integer> A) {
         // write your code
+        
+        /*  数组剔除元素后的乘积
+        
+            给定一个整数数组A
+            定义B[i] = A[0] * ... * A[i-1] * A[i+1] * ... * A[n-1]，
+            计算B的时候请不要使用除法
+
+            样例: 给出A=[1, 2, 3]，返回 B为[6, 3, 2]
+        */
+        
         /*
         //方法1：leftb计算左侧的连乘值，每次增加一个成绩，rightb计算右侧的连乘值
         //每次重新计算，时间复杂度O(N2)
@@ -49,8 +59,9 @@ public class Solution {
         //方法2：左右分治
         /*
           result[i] = left[i] * right[i] 
-          left[i] = A[0]*A[1]***A[i-1]
-          right[i] = A[i+1]*A[i+2]***A[len(A)-1]
+          left[i] = A[0] * A[1] * ... * A[i-1]
+          right[i] = A[i+1] * A[i+2] * ... * A[len(A)-1]
+          
           将最后的乘积分为两部分求解，首先求得左半部分的值，然后求得右半部分的值
           最后将左右两半部分乘起来即为解
         */
@@ -87,6 +98,7 @@ public class Solution {
             long res = right[i] * left[i];
             B.add(res);
         }
+        
         return B;        
     }
 }

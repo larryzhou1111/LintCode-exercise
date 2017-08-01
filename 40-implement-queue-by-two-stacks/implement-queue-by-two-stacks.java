@@ -10,6 +10,8 @@ public class MyQueue {
     private Stack<Integer> stack1;
     private Stack<Integer> stack2;
 
+	//剑指offer题7
+	
     /* 用栈实现队列
     
        正如标题所述，你需要使用两个栈来实现队列的一些操作。

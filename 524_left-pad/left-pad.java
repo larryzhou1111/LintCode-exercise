@@ -15,18 +15,32 @@ public class StringUtils {
     static public String leftPad(String originalStr, int size) {
         // Write your code here
         
+        /*  左填充: 实现一个leftpad库
+            
+            样例:
+                leftpad("foo", 5)
+                >> "  foo"
+                
+                leftpad("foobar", 6)
+                >> "foobar"
+                
+                leftpad("1", 2, "0")
+                >> "01"
+        */
         int len = originalStr.length();
         
         if(len < size){
             
             String addstring = new String();
             
-            for(int i=0; i<size-len; i++){
+            for(int i = 0; i < size - len; i++){
                 
                 addstring = addstring + ' ';
             }
+            
             originalStr = addstring + originalStr;
         }
+        
         return originalStr;
     }
 
@@ -45,12 +59,14 @@ public class StringUtils {
             
             String addstring = new String();
             
-            for(int i=0; i<size-len; i++){
+            for(int i = 0; i < size - len; i++){
                 
                 addstring = addstring + padChar;
             }
+            
             originalStr = addstring + originalStr;
         }
+        
         return originalStr;        
     }
 }

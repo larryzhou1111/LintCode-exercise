@@ -26,8 +26,14 @@ public class Solution {
     ListNode nthToLast(ListNode head, int n){
         // write your code here
         
-        //需回顾！
-        
+		//剑指offer题15
+		
+		/*  链表倒数第n个节点
+			找到单链表倒数第n个节点，保证链表中节点的最少数量为n
+			
+			样例: 给出链表 3->2->1->5->null和n = 2，返回倒数第二个节点的值1
+		*/
+
         //方法1：递归法，实际遍历了链表两次，效率低
         /*
         //当递归到链表尾部时返回，每次返回时长度加1，一旦长度为n时记录下该节点

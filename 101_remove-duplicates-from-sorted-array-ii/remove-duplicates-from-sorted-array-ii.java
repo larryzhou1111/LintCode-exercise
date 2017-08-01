@@ -13,9 +13,14 @@ public class Solution {
      */
     public int removeDuplicates(int[] nums) {
         // write your code here
-        
-        //类比题100，注意区别。本题允许数字两次重复，需回顾 ！
-        
+		
+        //类似剑指offer题38
+		
+		/* 
+		    删除排序数组中的重复数字II (如果可以允许出现两次重复)
+            类比题100，注意区别。本题允许数字两次重复，需回顾 ！
+		*/		
+
         //方法1：
         /*
         if(nums == null || nums.length == 0) 

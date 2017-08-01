@@ -13,7 +13,7 @@ public class Solution {
      */
     public List<Map.Entry<Integer, Double>> dicesSum(int n) {
         // Write your code here
-        
+
         // Ps. new AbstractMap.SimpleEntry<Integer, Double>(sum, pro)
         // to create the pair
         

@@ -14,6 +14,8 @@ class Solution {
     public int nthUglyNumber(int n) {
         // Write your code here
         
+		//剑指offer题34，第n个丑数
+		
         /*
         方法：分成三组，每次取最小值做丑数，每组使用一个指针。然后被选中的数的指针后移
         

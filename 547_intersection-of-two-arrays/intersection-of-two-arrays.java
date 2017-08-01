@@ -15,6 +15,13 @@ public class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
         // Write your code here
         
+        /*  两数组的交: 返回两个数组的交
+        
+            注意事项：每个元素都是唯一的；结果中的元素可以是任何顺序
+            
+            样例: nums1 = [1, 2, 2, 1], nums2 = [2, 2], 返回 [2]
+        */
+        
         //方法1：循环遍历（不推荐）
 
         /*
@@ -33,6 +40,7 @@ public class Solution {
         int index2 = 0;
         
         for (int i = 0; i < nums1.length; i++) {
+			
             // num2是子集
             if (index2 > nums2.length - 1) {
                 break;
@@ -41,8 +49,10 @@ public class Solution {
             int index = binarySearch(nums2, index2, nums1[i]);
             
             if (index != -1) {
+				
                 // set去重
                 set.add(nums1[i]);
+				
                 // num2指针移动
                 index2 = index;
             }
@@ -52,8 +62,10 @@ public class Solution {
         int i = 0;
         
         for (Integer cur : set) {
+			
             results[i++] = cur.intValue();
         }
+		
         return results;
     }
     

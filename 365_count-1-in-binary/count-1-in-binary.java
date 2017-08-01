@@ -14,6 +14,8 @@ public class Solution {
     public int countOnes(int num) {
         // write your code here
 
+		//剑指offer题10
+		
         /* 二进制中有多少个1
             计算在一个 32 位的整数的二进制表示中有多少个 1
             

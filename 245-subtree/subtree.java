@@ -25,6 +25,8 @@ public class Solution {
     public boolean isSubtree(TreeNode T1, TreeNode T2) {
         // write your code here
         
+		//剑指offer题18
+		
         /* 子树 
             有两个不同大小的二进制树： T1 有上百万的节点； T2 有好几百的节点
             请设计一种算法，判定 T2 是否为 T1的子树。

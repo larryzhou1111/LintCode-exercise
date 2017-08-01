@@ -11,6 +11,8 @@ class Solution {
      * @return: The same instance of this class every time
      */
     
+	//剑指offer题2
+	
     //写法1：单例模式之恶汉式（类一加载，对象就造好了）
     
     //构造私有方法,也可不构造

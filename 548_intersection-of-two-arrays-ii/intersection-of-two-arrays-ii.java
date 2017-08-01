@@ -15,7 +15,17 @@ public class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
         // Write your code here
 
+        /*  两数组的交II: 计算两个数组的交
+            
+            注意事项:
+                    每个元素出现次数得和在数组里一样
+                    答案可以以任意顺序给出
+                    
+            样例: nums1 = [1, 2, 2, 1], nums2 = [2, 2], 返回 [2, 2]
+        */
+
         //方法1：通过HashMap<Integer, Integer>记录数组中每个元素与对应的出现次数
+        /*
         int[] results;
         
         if(nums1 == null || nums1.length == 0 || nums2 == null || nums2.length == 0){
@@ -54,16 +64,20 @@ public class Solution {
             results[i] = list.get(i);
         }
         return results;        
-        
+        */
         
         //方法2：排序+二分查找变种+双指针
         /*
             变种二分查找：此二分查找用于找到查找目标第一次出现位置
-            双指针解法：经过排序后，假设两数组中拥有某个交集元素cur  ,通过二分查找到cur在第二个数组中的位置index,        
-                ,通过双指针cnt1与cnt2统计交集元素cur在两个数组中各自出现的总次数，
-                 较小者表示该交集元素在交集中出现的次数
+            
+            双指针解法：
+                经过排序后，假设两数组中拥有某个交集元素cur,
+                通过二分查找，找到cur在第二个数组中的位置index,  
+                
+                通过双指针cnt1与cnt2,统计交集元素cur在两个数组中各自出现的总次数
+                较小者表示该交集元素在交集中出现的次数
         */
-        /*
+        
         int[] results;
         if(nums1 == null || nums1.length == 0 || nums2 == null || nums2.length == 0){
             
@@ -80,8 +94,10 @@ public class Solution {
         int i = 0;
         
         while(i < nums1.length){
+            
             // num2是子集
             if(index2 > nums2.length - 1){
+                
                 break;
             }
             
@@ -90,39 +106,50 @@ public class Solution {
             int index = binarySearch(nums2, index2, cur);
             
             if(index != -1){
+            
                 // 查找交集元素cur在数组nums1中出现总次数
                 for(int k = 1; k < nums1.length && i + k < nums1.length; k++){
                     
-                    if (nums1[i + k] != cur) {
+                    if(nums1[i + k] != cur){
+                        
                         break;
                     }
                     cnt1++;
                 }
+                
                 // 查找交集元素cur在数组nums2中出现总次数
                 for(int k = 1; k < nums2.length && index + k < nums2.length; k++){
                     
                     if(nums2[index + k] != cur){
+                        
                         break;
                     }
                     cnt2++;
                 }
                 
                 int min = Math.min(cnt1, cnt2);
+                
                 for(int k = 0; k < min; k++){
+                    
                     list.add(cur);
                 }
+                
                 // nums2指针移动
                 index2 += cnt2;
             }
+            
             // nums1指针移动
             i += cnt1;
         }
         
         results = new int[list.size()];
         i = 0;
-        for (Integer cur : list) {
+        
+        for(Integer cur : list){
+        
             results[i++] = cur.intValue();
         }
+        
         return results;
     }
     
@@ -136,26 +163,30 @@ public class Solution {
             
             int mid = start + (end - start) / 2;
             
-            if (num[mid] == target) {
+            if(num[mid] == target){
+            
                 end = mid;
             } 
-            else if (num[mid] < target) {
+            else if(num[mid] < target){
+            
                 start = mid;
             } 
-            else {
+            else{
                 end = mid;
             }
         }
         
-        if (num[start] == target) {
+        if(num[start] == target){
+            
             return start;
         }
         
-        if (num[end] == target) {
+        if(num[end] == target){
+        
             return end;
         }
         
         return -1;        
-        */
+        
     }
 }
