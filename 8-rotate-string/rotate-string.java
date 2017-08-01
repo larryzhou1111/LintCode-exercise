@@ -14,7 +14,9 @@ public class Solution {
      */
     public void rotateString(char[] str, int offset) {
         // write your code here
-        
+
+		//类似剑指offer题42-2
+		        
         /* 旋转字符串 （右旋）(类比剑指offer题42-2,左旋)
         
             给定一个字符串和一个偏移量，根据偏移量旋转字符串(从左向右旋转)

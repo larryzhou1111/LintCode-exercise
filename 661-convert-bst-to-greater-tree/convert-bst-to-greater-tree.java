@@ -28,6 +28,17 @@ public class Solution {
         /*
            给定二叉搜索树（BST），将其转换为较大的树
            使原始BST的每个键都更改为，原始键，加上BST中所有大于原始键的键的总和
+           
+           样例:
+                Given a binary search Tree {5,2,3}:
+                              5
+                            /   \
+                           2     13
+                           
+                Return the root of new tree
+                             18
+                            /   \
+                          20     13
         */
         
         /*

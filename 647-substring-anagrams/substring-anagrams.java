@@ -21,6 +21,9 @@ public class Solution {
           给定一个字符串s和一个非空字符串p，找到所有p的起始索引
           字符串仅由小写英文字母组成，字符串s和p的长度不得大于40,000
           输出顺序无关紧要
+          
+          样例: Given s = "cbaebabacd" p = "abc"
+                return [0, 6]
         */
         
         //方法1：比较两个map是不是相等

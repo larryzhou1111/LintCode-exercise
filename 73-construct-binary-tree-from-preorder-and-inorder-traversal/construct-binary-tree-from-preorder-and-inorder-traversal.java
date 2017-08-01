@@ -28,6 +28,8 @@ public class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         // write your code here
         
+		//剑指offer题6
+		
         /* 前序遍历和中序遍历树构造二叉树
         
            注意事项:你可以假设树中不存在相同数值的节点

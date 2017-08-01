@@ -27,6 +27,8 @@ public class Solution {
      */
     public TreeNode buildTree(int[] inorder, int[] postorder) {
         // write your code here
+		
+		//剑指offer题6
         
         /* 中序遍历和后序遍历树构造二叉树
         
