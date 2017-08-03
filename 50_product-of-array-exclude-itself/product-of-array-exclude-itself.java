@@ -14,6 +14,8 @@ public class Solution {
     public ArrayList<Long> productExcludeItself(ArrayList<Integer> A) {
         // write your code
         
+        //剑指offer题52
+        
         /*  数组剔除元素后的乘积
         
             给定一个整数数组A
