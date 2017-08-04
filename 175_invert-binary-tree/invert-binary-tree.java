@@ -25,7 +25,7 @@ public class Solution {
     public void invertBinaryTree(TreeNode root) {
         // write your code here
 		
-		//剑指offer题19
+		//剑指offer题19、类似59
         
         /* 翻转二叉树
         

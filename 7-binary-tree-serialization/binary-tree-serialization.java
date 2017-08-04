@@ -23,6 +23,8 @@ class Solution {
      * to serialize a binary tree which denote by a root node to a string which
      * can be easily deserialized by your own "deserialize" method later.
      */
+    
+    //剑指offer题62
      
     public int index = -1; 
      
