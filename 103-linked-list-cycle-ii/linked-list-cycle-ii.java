@@ -26,6 +26,8 @@ public class Solution {
     public ListNode detectCycle(ListNode head) {  
         // write your code here
         
+		//剑指offer题56
+		
         /*  带环链表II: 
             给定一个链表，如果链表中存在环，则返回到链表中环的起始节点的值
             ，如果没有环，返回null

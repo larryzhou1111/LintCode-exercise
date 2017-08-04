@@ -37,21 +37,51 @@ public class Solution {
         /*  解析：
                 不能修改数组，则不能排序
                 空间复杂度要求常数O（1），则不能利用Map等数据结构
-            
-            参考：http://bookshadow.com/weblog/2015/09/28/leetcode-find-duplicate-number/
         */
         
-        //方法1：时间复杂度O(n * log n)
+        //方法1：时间复杂度O(n),空间复杂度O(1)
         /*
-            二分枚举答案范围，使用鸽笼原理进行检验
+            从头到尾依次扫描数组中的每个数字
             
-            根据鸽笼原理，给定n + 1个范围[1, n]的整数，其中一定存在数字出现至少两次
+            当扫描到下标为i的数字时，首先比较这个数字（用m表示）是不是等于i
+            如果是，接着扫描下一个数字；
+            如果不是，再拿它和第m个数字进行比较
             
-            假设枚举的数字为 n/2：
-            遍历数组，若数组中不大于 n/2 的数字个数超过 n/2，
-            则可以确定[1, n/2]范围内一定有解，否则可以确定解落在[n/2, n]范围内
+            如果它和第m个数字相等，就找到了一个重复数字（位置为i和m）
+            如果它和第m个数字不等，就把第i和第m个数字交换，把m放到属于它的位置
+            
+            重复比较、交换，直到找到重复的数字
+            
+            给出数组[5,5,4,3,2,1] -交换-> [1,5,4,3,2,5] 
+                    -交换-> [5,1,4,3,2,5] --> 5==5，找到重复元素
         */
-
+        if(nums == null || nums.length == 0)
+            return Integer.MIN_VALUE;
+            
+        int duplicate = Integer.MIN_VALUE;    
+        
+        for(int i = 0; i < nums.length; i++){
+            
+            while(nums[i] != i){
+                
+                if(nums[i] == nums[nums[i]]){
+                    
+                    duplicate = nums[i];
+                    break;
+                }
+                else{
+                    
+                    //把第i和第m个数字交换，把m放到属于它的位置
+                    int tmp = nums[i];
+                    nums[i] = nums[tmp];
+                    nums[tmp] = tmp;
+                }
+            }
+        }
+        
+        return duplicate;
+        
+        
         //方法2：将此数组看出一个有环的数组
         /*
             x_0 -> x_1 -> ... x_k -> x_{k+1} ... -> x_{k+j}
@@ -60,7 +90,9 @@ public class Solution {
                             +-----------------------+
                             
         进行环检测，查找包含重复值的循环，循环的入口即为重复值
+        参考：http://bookshadow.com/weblog/2015/09/28/leetcode-find-duplicate-number/
         */
+        /*
         if(nums == null || nums.length == 0)
             return Integer.MIN_VALUE;
         
@@ -79,10 +111,9 @@ public class Solution {
             }  
         }  
         
-        /*
-            快慢指针相遇后，调整fast = nums[0]，slow不变
-            同时速度保持一致，继续移动；再次相遇的地方，就是环开始的地方
-        */  
+        //快慢指针相遇后，调整fast = nums[0]，slow不变
+        //同时速度保持一致，继续移动；再次相遇的地方，就是环开始的地方
+        
         int result = 0;  
         
         while(true){  
@@ -95,6 +126,6 @@ public class Solution {
                 return result;  
             }  
         }        
-        
+        */
     }
 }

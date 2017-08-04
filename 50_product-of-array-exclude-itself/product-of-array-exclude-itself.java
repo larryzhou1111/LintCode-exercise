@@ -25,11 +25,13 @@ public class Solution {
             样例: 给出A=[1, 2, 3]，返回 B为[6, 3, 2]
         */
         
+        //方法1：时间复杂度O(N2)
         /*
-        //方法1：leftb计算左侧的连乘值，每次增加一个成绩，rightb计算右侧的连乘值
-        //每次重新计算，时间复杂度O(N2)
-        
-        //注意 类型是Long 不是long ,区分大小写！
+            leftb计算左侧的连乘值，每次增加一个成绩，rightb计算右侧的连乘值
+
+            注意类型是Long 不是long ,区分大小写！
+        */
+        /*
         ArrayList<Long> B = new ArrayList<Long>();
         
         long leftb = 1;
@@ -43,7 +45,7 @@ public class Solution {
             }
             else{
                 
-                leftb = leftb * A.get(i-1);
+                leftb = leftb * A.get(i - 1);
             }
             
             for(int j = i + 1; j < A.size(); j++){
@@ -51,29 +53,34 @@ public class Solution {
                 rightb = rightb * A.get(j);
             }
             
-            long bi = leftb * rightb;
-            B.add(bi);
+            long b = leftb * rightb;
+            B.add(b);
+            
             rightb = 1;
         }
+        
         return B;
         */
         
-        //方法2：左右分治
+        //方法2：左右分治,时间复杂度O(n)
         /*
           result[i] = left[i] * right[i] 
-          left[i] = A[0] * A[1] * ... * A[i-1]
+          
+          left[i] = A[0] * A[1] * ... * A[i-1] 
+                  = left[i-1] * A[i-1] (可用自上而下的顺序计算)
+                  
           right[i] = A[i+1] * A[i+2] * ... * A[len(A)-1]
+                   = right[i+1] * A[i+1] (可用自下而上的顺序计算)
           
           将最后的乘积分为两部分求解，首先求得左半部分的值，然后求得右半部分的值
           最后将左右两半部分乘起来即为解
         */
-        
         ArrayList<Long> B = new ArrayList<Long>();
         
         if(A == null || A.size() == 1){
             
-            long bi = 1;
-            B.add(bi);
+            long b = 1;
+            B.add(b);
             return B;
         }
         
@@ -101,6 +108,6 @@ public class Solution {
             B.add(res);
         }
         
-        return B;        
+        return B;  
     }
 }
