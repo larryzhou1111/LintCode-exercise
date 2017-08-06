@@ -28,19 +28,29 @@ public class Solution {
             持续进入数组的数的列表为：[2, 20, 100]，则返回[2, 2, 20]
         */
         
-        //利用最大最小堆，插入的时间复杂度O(logn)，得到中位数的时间复杂度O(1)
+        //利用最大最小堆
+        //插入的时间复杂度O(logn)，得到中位数的时间复杂度O(1); 总时间O(nlogn)，空间O(n)
+        /*
+          思路:
+            维护一个最大堆，一个最小堆
+            最大堆存的是到目前为止较小的那一半数，最小堆存的是到目前为止较大的那一半数
+            这样中位数只有可能是两个堆的堆顶
+            
+            而维护两个堆的技巧在于判断堆顶数和新来的数的大小关系：
+            新数比最小堆中的最小数还要小时，将当前数添加到最大堆
+            新数比最小堆中的最小数要大时，将当前数添加到最小堆
+            
+            还有两个堆的大小关系：将新数加入堆后，要保证两个堆的大小之差不超过1
+            
+            这样，每次新加进来一个数以后，如果两个堆一样大，则中位数是最大堆的堆顶值
+            否则中位数是数据较多的那个堆的堆顶
+        */
         
-        //构造最小堆，保证堆顶元素始终是堆中的最小值
-        PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>(10,
-            new Comparator<Integer>(){
-                
-                public int compare(Integer a, Integer b) {
-                          
-                    return a - b;
-                }
-            });
+        //构造最小堆，保证堆顶元素始终是堆中的最小值，使用默认比较器
+        PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
         
-        //构造最大堆，保证堆顶元素始终是堆中的最大值          
+        //构造最大堆，保证堆顶元素始终是堆中的最大值
+        //默认初始堆的大小是10，Comparator实现compare方法时，用b-a来表示大的值在前面
         PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(10,
             new Comparator<Integer>(){
                 
