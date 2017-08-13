@@ -24,6 +24,18 @@ class Solution {
     public List<Interval> merge(List<Interval> intervals) {
         // write your code here
         
+        /*  合并区间: 给出若干闭合区间，合并所有重叠的部分
+        
+            样例:
+                给出的区间列表 => 合并后的区间列表：
+                [                     [
+                  [1, 3],               [1, 6],
+                  [2, 6],      =>       [8, 10],
+                  [8, 10],              [15, 18]
+                  [15, 18]            ]
+                ]
+        */
+        
         if(intervals == null || intervals.size() <= 1)
             return intervals;
         
