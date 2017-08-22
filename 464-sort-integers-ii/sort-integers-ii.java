@@ -15,7 +15,6 @@ public class Solution {
         // Write your code here
         
         //类比题463
-        
         /*
         //方法1：归并排序，递归实现归并
         if(A == null || A.length <= 1)
@@ -25,7 +24,6 @@ public class Solution {
         int high = A.length - 1;
         
         mergeSort(A, low, high);
-        
     }
     
     public void mergeSort(int[] A, int low, int high){
@@ -41,7 +39,6 @@ public class Solution {
         
         //归并，合并两个已排序的部分
         merge(A, low, mid, high);
-        
     }
     
     //此部分可类比题6，合并两个已排序的数组
@@ -59,42 +56,39 @@ public class Solution {
             
             if(A[i] > A[j]){
                 
-                B[k++] = A[j];
-                j++;
+                B[k++] = A[j++];
             }
             else{
                 
-                B[k++] = A[i];
-                i++;
+                B[k++] = A[i++];
             }
         }
         
         //i长度超出的部分
         while(i <= mid){
             
-            B[k++] = A[i];
-            i++;
+            B[k++] = A[i++];
         }
         
         //j长度超出的部分
         while(j <= high){
             
-            B[k++] = A[j];
-            j++;
+            B[k++] = A[j++];
         }
         
         for(k = 0; k < len; k++){
             
             A[low + k] = B[k];
         }
-    */  
-    
+        
+        */
+        
+        /*
         //方法2：快排
         if(A == null || A.length <= 1)
             return;
     
         quickSort(A, 0, A.length - 1);
-    
     }
     
     public void quickSort(int[] A, int start, int end){
@@ -111,40 +105,82 @@ public class Solution {
         
     }
     
-    //重新安排数字的位置，使所有比中枢点小的数到左半边，所有大于中枢点的数到右半边
+    //重新安排数字的位置，使所有比中枢点小的数到左半边，大于中枢点的数到右半边
     //等于中枢点的数可在任意一边，则数组就被分为了两段，注意两段的长度可以不相等
+    //下面是优化版的获取中枢点的方法，不交换直接替换
     public int partition(int[] A, int start, int end){
         
         int pivot = A[start];
-        int i = start;
-        int j = end;
-        
-        while(i < j){
+
+        while(start < end){
             
-            while(i < j && A[j] >= pivot){
+            while(start < end && A[end] >= pivot){
                 
-                j--;
+                end--;
             }
             
-            if(i < j){
+            //跳出上述循环时，A[end] < pivot；
+            //只是为了得到中枢点，此时可以直接替换，而不用交换
+            
+            //int tmp = A[start];
+            //A[start] = A[end];
+            //A[end] = tmp;
+            
+            A[start] = A[end];
+
+            while(start < end && A[start] <= pivot){
                 
-                A[i] = A[j];
+                start++;
             }
             
-            while(i < j && A[i] <= pivot){
-                
-                i++;
-            }
-            
-            if(i < j){
-                
-                A[j] = A[i];
-            }            
-            
+            A[end] = A[start];
         }
         
-        A[i] = pivot;
-        return i;
+        A[start] = pivot;
         
+        return start;
+        */
+        
+        //方法3：堆排序
+        for(int i = A.length / 2 - 1; i >= 0; i--) {
+            
+            //构建一个大顶堆
+            adjustHeap(A, i, A.length - 1);
+        }
+        
+        for(int j = A.length - 1; j > 0; j--){
+            
+            //将堆顶记录和当前未经排序子序列的最后一个记录交换
+            int temp = A[0];
+            A[0] = A[j];
+            A[j] = temp;
+            
+            //将a中前i-1个记录重新调整为大顶堆
+            adjustHeap(A, 0, j - 1);
+        }
+    }
+    
+    //构建大顶堆
+    public void adjustHeap(int[] A, int i, int len) {
+        
+        int temp = A[i];
+
+        for(int j = 2 * i; j < len; j *= 2) {
+            
+            //沿关键字较大的孩子结点向下筛选
+            if(j < len && A[j] < A[j + 1]){
+                
+                //j为关键字中较大记录的下标
+                ++j;
+            }
+  
+            if(temp >= A[j])
+                break;
+                
+            A[i] = A[j];
+            i = j;
+        }
+        
+        A[i] = temp;
     }
 }
